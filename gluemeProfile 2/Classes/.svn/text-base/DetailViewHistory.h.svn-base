@@ -1,0 +1,37 @@
+//
+//  DetailViewHistory.h
+//  glueme
+//
+//  Created by APPLE  on 9/21/11.
+//  Copyright 2011 openxcel. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "WhoGlueViewController.h"
+#import "listwhoglued.h"
+#import "gluemeAppDelegate.h"
+#import "Bump.h"
+
+@class WhoGlueViewController,gluemeAppDelegate,Bump;
+@interface DetailViewHistory : UIViewController {
+    Bump *bumpObj;
+    gluemeAppDelegate *appDelegateObj;
+    IBOutlet UILabel *LastGluedOn;
+    IBOutlet UILabel *LastGluedTime;
+    IBOutlet UILabel *LastGluedOnDetail;
+    IBOutlet UILabel *LastGluedTimeDetail;
+	IBOutlet UIButton *btnMap;
+    IBOutlet UIButton *btnFAQ;
+    WhoGlueViewController *whoGlueObj;
+    listwhoglued *listVwObj;
+}
+
+@property(nonatomic, retain) UILabel *LastGluedOn;
+@property(nonatomic, retain) UILabel *LastGluedTime;
+@property(nonatomic, retain) UILabel *LastGluedOnDetail;
+@property(nonatomic, retain) UILabel *LastGluedTimeDetail;
+-(IBAction)onMap:(id)sender;
+-(IBAction)setmeeting;
+-(void)Bump;	
+
+@end

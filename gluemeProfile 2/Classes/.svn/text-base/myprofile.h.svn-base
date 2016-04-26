@@ -1,0 +1,77 @@
+//
+//  myprofile.h
+//  glueme
+//
+//  Created by apple on 9/21/11.
+//  Copyright 2011 fgbfg. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "WhoGlueViewController.h"
+#import "listwhoglued.h"
+#import "Bump.h"
+#import "gluemeAppDelegate.h"
+
+@class WhoGlueViewController,listwhoglued,Bump,gluemeAppDelegate;
+@interface myprofile : UIViewController <UIActionSheetDelegate , UIPickerViewDelegate , UIImagePickerControllerDelegate , UINavigationControllerDelegate,UITextFieldDelegate>{
+    IBOutlet UIScrollView *PublicProScroll;
+	
+	IBOutlet UIScrollView *scroll;
+	
+	IBOutlet UISegmentedControl *mysegment;
+	
+	//UIActionSheet *actionsheet;
+	WhoGlueViewController *whoGlueObj;
+    Bump *bumpObj;
+    CGFloat animatedDistance;
+    
+    gluemeAppDelegate *appDelegateObj;
+    
+	UIImage *img;
+	IBOutlet UIButton *btnFAQ;
+	IBOutlet UIButton *imgBtn;
+	IBOutlet UIButton *btnMap;
+	IBOutlet UIScrollView *publicprofileview;
+	listwhoglued *listVwObj;
+	IBOutlet UIButton *lnamebtn;
+	IBOutlet UIButton *screenbtn;
+	IBOutlet UIButton *birthdaybtn;
+	IBOutlet UIButton *aboutmebtn;
+	IBOutlet UIButton *emailbtn;
+	IBOutlet UIButton *contactbtn;
+
+
+    IBOutlet UITextField *txtfname;
+    
+    IBOutlet UITextField *txtlname;
+    IBOutlet UITextField *txtcontactno;
+    IBOutlet UITextField *txtbday;
+    IBOutlet UITextField *txtaboutme;
+
+    IBOutlet UITextField *txtscrnname;
+
+    
+    
+    NSString *StrImage1;
+    
+    NSString *StrImageCode1;
+    NSString *picname1;
+    NSString *picname;
+    
+    
+
+}
+
+@property (nonatomic, retain) UIScrollView *PublicProScroll;
+
+-(IBAction)onMap:(id)sender;
+
+-(void)Bump;
+-(IBAction)segmentedControlIndexChanged;
+-(IBAction)takeImage:(id)sender;
+-(IBAction)setmeeting;
+-(IBAction)ChkBtnValChanged:(id)sender;
+-(IBAction)btnregister:(id)sender;
+
+
+@end

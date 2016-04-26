@@ -1,0 +1,34 @@
+//
+//  HomeScreen.h
+//  glueme
+//
+//  Created by apple1 on 9/21/11.
+//  Copyright 2011 openxcek. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "WhoGlueViewController.h"
+#import "listwhoglued.h"
+#import "Bump.h"
+#import "gluemeAppDelegate.h"
+
+@class WhoGlueViewController,listwhoglued,Bump,gluemeAppDelegate;
+@interface HomeScreen : UIViewController {
+
+    gluemeAppDelegate *appDelegateObj;
+    Bump *bumpObj;
+    listwhoglued *listVwObj;
+    WhoGlueViewController *whoGlueVwObj;
+	IBOutlet UITableView *tlbHome;
+	IBOutlet UIButton *btnFAQ;
+	IBOutlet UIButton *btnMap;
+	NSMutableArray *arrHome;
+	NSIndexPath *ind;
+    
+}
+
+-(IBAction)onFAQ:(id)sender;
+-(IBAction)onMap:(id)sender;
+-(IBAction)setmeeting;
+-(void)Bump;
+@end

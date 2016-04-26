@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/glueme/!svn/ver/324/glueme/SystemConfiguration.framework/Headers
+END
+SCDynamicStoreCopyDHCPInfo.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/glueme/!svn/ver/324/glueme/SystemConfiguration.framework/Headers/SCDynamicStoreCopyDHCPInfo.h
+END
+SCNetworkConnection.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/glueme/!svn/ver/324/glueme/SystemConfiguration.framework/Headers/SCNetworkConnection.h
+END
+DHCPClientPreferences.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/glueme/!svn/ver/324/glueme/SystemConfiguration.framework/Headers/DHCPClientPreferences.h
+END
+SCNetworkReachability.h
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/glueme/!svn/ver/324/glueme/SystemConfiguration.framework/Headers/SCNetworkReachability.h
+END
+SCDynamicStoreKey.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/glueme/!svn/ver/324/glueme/SystemConfiguration.framework/Headers/SCDynamicStoreKey.h
+END
+SCPreferencesPath.h
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/glueme/!svn/ver/324/glueme/SystemConfiguration.framework/Headers/SCPreferencesPath.h
+END
+CaptiveNetwork.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/glueme/!svn/ver/324/glueme/SystemConfiguration.framework/Headers/CaptiveNetwork.h
+END
+SCNetworkConfiguration.h
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/glueme/!svn/ver/324/glueme/SystemConfiguration.framework/Headers/SCNetworkConfiguration.h
+END
+SCPreferencesSetSpecific.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/glueme/!svn/ver/324/glueme/SystemConfiguration.framework/Headers/SCPreferencesSetSpecific.h
+END
+SystemConfiguration.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/glueme/!svn/ver/324/glueme/SystemConfiguration.framework/Headers/SystemConfiguration.h
+END
+SCNetwork.h
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/glueme/!svn/ver/324/glueme/SystemConfiguration.framework/Headers/SCNetwork.h
+END
+SCSchemaDefinitions.h
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/glueme/!svn/ver/324/glueme/SystemConfiguration.framework/Headers/SCSchemaDefinitions.h
+END
+SCPreferences.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/glueme/!svn/ver/324/glueme/SystemConfiguration.framework/Headers/SCPreferences.h
+END
+SCDynamicStore.h
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/glueme/!svn/ver/324/glueme/SystemConfiguration.framework/Headers/SCDynamicStore.h
+END
+SCDynamicStoreCopySpecific.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/glueme/!svn/ver/324/glueme/SystemConfiguration.framework/Headers/SCDynamicStoreCopySpecific.h
+END

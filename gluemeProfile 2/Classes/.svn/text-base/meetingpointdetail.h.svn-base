@@ -1,0 +1,61 @@
+//
+//  meetingpointdetail.h
+//  glueme
+//
+//  Created by apple on 9/21/11.
+//  Copyright 2011 fgbfg. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "addfriend.h"
+#import "WhoGlueViewController.h"
+#import "listwhoglued.h"
+#import "Bump.h"
+#import "gluemeAppDelegate.h"
+#import "addfriend.h"
+#import "AlertHandler.h"
+#import "GdataParser.h"
+
+@class WhoGlueViewController,listwhoglued,Bump,gluemeAppDelegate,addfriend;
+@interface meetingpointdetail : UIViewController <UIActionSheetDelegate,UIPickerViewDelegate>{
+
+    Bump *bumpObj;
+    NSString *currentUserName;
+    addfriend *ObjAddfrnd;
+    NSMutableArray *meetingPPl;
+    gluemeAppDelegate *appDelegateObj;
+    listwhoglued *listVwObj;
+    WhoGlueViewController *whoGlueVwObj;
+    IBOutlet UILabel *placeLbl;
+	IBOutlet UIButton *btnFAQ;
+	IBOutlet UITableView *tbl;
+	IBOutlet UIButton *btnMap;
+    UIActionSheet *dateActionsheet;
+	UIDatePicker *datePicker;
+    IBOutlet UIButton *dateBtn;
+    IBOutlet UILabel *timeLbl;
+    NSString *emailId;
+     NSString *userEmail;
+    
+    NSString *stremaillist;
+    IBOutlet UILabel *lblemaillist;
+    
+    
+    
+}
+@property (nonatomic, retain)NSMutableArray *meetingPPl;
+@property (nonatomic, retain)UIButton *dateBtn;
+@property(nonatomic, retain)UILabel *placeLbl;
+
+-(IBAction)onMap:(id)sender;
+-(IBAction)btnadd_clicked;
+-(void)Back;
+-(IBAction)setmeeting;
+-(void)Bump;
+-(IBAction)DateSelection;
+-(void)PassData;
+-(void)getFriendDetail;
+-(void)PassDatafrnd;
+-(NSString *)urlEncodeValue:(NSString *)str4;
+-(IBAction)cancelBtnClick;
+@end

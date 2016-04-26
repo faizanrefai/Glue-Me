@@ -1,0 +1,72 @@
+//
+//  MineRequest.h
+//  gluemefile://localhost/Volumes/Untitled%202/SVN/glueme/Classes/MineRequest.xib
+//
+//  Created by APPLE  on 9/20/11.
+//  Copyright 2011 openxcel. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "MyRequestCell.h"
+#import "WhoGlueViewController.h"
+#import "listwhoglued.h"
+#import "Bump.h"
+#import "gluemeAppDelegate.h"
+#import "AlertHandler.h"
+@class WhoGlueViewController,listwhoglued,Bump;
+@interface MineRequest : UIViewController <UITableViewDelegate,UITableViewDataSource>{
+    
+    Bump *bumpObj;
+    gluemeAppDelegate *appDelegateObj;
+    WhoGlueViewController *whoGlueVwObj;
+    IBOutlet UITableView *RequestTbl;
+    IBOutlet UISegmentedControl *requestSegment;
+    NSMutableArray *statusArray;
+    NSMutableArray *nameArray;
+    NSMutableArray *nameArrayid;
+    
+    
+    NSMutableArray *arrtheirid;
+    
+    NSMutableArray *TheirNameArray;
+    NSMutableArray *TheirStatusArray;
+	IBOutlet UIButton *btnMap;
+    IBOutlet UIButton *btnFAQ;
+    int ind;
+    listwhoglued *listVwObj;
+    UIButton *BlockBtn;
+    UIButton *IgnoreBtn;
+    UIButton *AcceptBtn;
+}
+
+
+@property (nonatomic) int ind;
+@property (nonatomic, retain) NSMutableArray *TheirStatusArray;
+@property (nonatomic, retain)NSMutableArray *TheirNameArray;
+@property (nonatomic, retain)NSMutableArray *nameArray;
+@property (nonatomic, retain) NSMutableArray *statusArray;
+@property (nonatomic, retain)UISegmentedControl *requestSegment;
+@property (nonatomic , retain)UITableView *RequestTbl;
+
+
+
+
+-(IBAction)SegmentChanged;
+-(IBAction)onMap:(id)sender;
+-(IBAction)setmeeting;
+
+
+-(void)ClickOnReject:(id)sender;
+-(void)ClickOnBlock:(id)sender;
+-(void)ClickOnAccept:(id)sender;
+-(void)deleteCell;
+-(void)Bump;
+
+
+-(void)GetMyFriendRequestList;
+-(void)GetSentFriendRequestList;
+
+
+
+
+@end

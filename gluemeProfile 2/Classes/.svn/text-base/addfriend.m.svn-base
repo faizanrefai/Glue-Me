@@ -1,0 +1,350 @@
+//
+//  addfriend.m
+//  glueme
+//
+//  Created by apple on 9/21/11.
+//  Copyright 2011 fgbfg. All rights reserved.
+//
+
+#import "addfriend.h"
+#import "FAQHelp.h"
+#import "whogluedmap.h"
+
+@implementation addfriend
+@synthesize IsselectFrnd,selectFrnd,Contname;
+// The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
+/*
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization.
+    }
+    return self;
+}
+*/
+
+-(IBAction)onMap:(id)sender{
+	
+	whoGlueVwObj = [[WhoGlueViewController alloc] initWithNibName:@"WhoGlueViewController" bundle:nil];
+    appDelegateObj.count = 0;
+    
+	//whogluedmap	*gluemap=[[whogluedmap alloc]initWithNibName:@"whogluedmap" bundle:nil];
+	[self.navigationController pushViewController:whoGlueVwObj animated:YES];
+	//[gluemap release];
+	
+	
+}
+
+-(IBAction)setmeeting
+{
+    listVwObj = [[listwhoglued alloc] initWithNibName:@"listwhoglued" bundle:nil];
+    [self.navigationController pushViewController:listVwObj animated:NO];
+}
+
+-(IBAction)onFAQ:(id)sender
+{
+	FAQHelp *faqhelp=[[FAQHelp alloc]initWithNibName:@"FAQHelp" bundle:nil];
+	[self.navigationController pushViewController:faqhelp animated:YES];
+	[faqhelp release];
+}
+
+// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad {
+    
+    appDelegateObj = (gluemeAppDelegate *)[[UIApplication sharedApplication]delegate];
+    Contname = [[NSMutableArray alloc] init];
+    self.navigationController.navigationBar.alpha = 0.0;
+    
+    self.navigationController.navigationBar.tintColor = [UIColor clearColor];
+    UIImageView *topbarImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 46)];
+    [topbarImg setImage:[UIImage imageNamed:@"Group9.png"]];
+    
+    [self.view addSubview:topbarImg];
+    
+    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    backBtn.frame = CGRectMake(5,10, 76, 28);
+    
+    [backBtn addTarget:self action:@selector(Back) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *BumpBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    BumpBtn.frame = CGRectMake(268,10, 35, 34);
+    
+    [BumpBtn addTarget:self action:@selector(Bump) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:BumpBtn]; 
+    
+    [self.view addSubview:backBtn];    
+
+    selectFrnd = [[NSMutableString alloc] init];
+    
+    [super viewDidLoad];
+}
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    //PhoneBookArray = [[NSMutableArray alloc] init]; 
+    
+	gluemecontacttbl.hidden = FALSE;
+	phncontacttbl.hidden = TRUE;
+    
+    [mysegment setImage:[UIImage imageNamed:@"GMConSel.png"]forSegmentAtIndex:0];
+    [mysegment setImage:[UIImage imageNamed:@"Phone.png"]forSegmentAtIndex:1];
+    
+    NSString *aName;
+    
+    ABAddressBookRef addressBook = ABAddressBookCreate(); NSArray *thePeople = (NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBook);
+    for (id person in thePeople)
+        
+    {
+          CFStringRef cfName = ABRecordCopyCompositeName(person);
+        if (cfName != nil)
+        {
+            aName = [NSString stringWithString:(NSString *)cfName];
+            CFRelease(cfName);
+            [Contname addObject:aName];
+        }
+        else
+        {
+            aName = @"No Name";
+            [Contname addObject:aName];
+            
+        }
+    }
+    
+    [self GetUserList];
+    
+   
+}
+-(void)GetUserList
+{
+    [AlertHandler showAlertForProcess];
+    
+    
+    NSString *urlString = [NSString stringWithFormat:@"http://www.openxcellaus.info/glueme/user_list.php?user_id=%d",appDelegateObj.userID];
+    
+    
+    
+    NSLog(@"%@",urlString);
+    
+    NSMutableURLRequest *request=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    
+    JSONParser *parser;
+    parser= [[JSONParser alloc] initWithRequestForThread:request sel:@selector(datafatch:) andHandler:self];
+
+
+}
+-(void)reloadMyTbl
+{
+    [phncontacttbl reloadData];
+}
+
+-(void)datafatch:(NSDictionary*)dictionary{
+    
+    [AlertHandler hideAlert];
+    
+    contactArray=[[NSMutableArray alloc]init];
+    contactnum=[[NSMutableArray alloc]init];
+    contactname=[[NSMutableArray alloc]init];
+    contactemail=[[NSMutableArray alloc] init];
+    
+    for (int i=0; i<[[dictionary valueForKey:@"Record"]count]; i++) 
+    {
+        [contactArray addObject:[[[dictionary valueForKey:@"Record"] valueForKey:@"uid"] objectAtIndex:i]];
+        [contactname addObject:[[[dictionary valueForKey:@"Record"] valueForKey:@"firstname"] objectAtIndex:i]];
+        
+        [contactnum addObject:[[[dictionary valueForKey:@"Record"] valueForKey:@"phone"] objectAtIndex:i]];
+        
+        [contactemail addObject:[[[dictionary valueForKey:@"Record"] valueForKey:@"email"] objectAtIndex:i]];
+        
+        
+    }
+    [gluemecontacttbl reloadData];
+    
+}
+
+
+-(void)Back
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)Bump
+{
+    NSLog(@"BumpClicked");
+    bumpObj = [[Bump alloc] initWithNibName:@"Bump" bundle:nil];
+    [self.navigationController pushViewController:bumpObj animated:YES];
+    
+}
+
+/*
+// Override to allow orientations other than the default portrait orientation.
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Return YES for supported orientations.
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+*/
+
+-(IBAction)segmentedControlIndexChanged
+{
+    UIImageView *tableImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 80, 309, 248)];
+    [tableImg setImage:[UIImage imageNamed:@"tblBackGround.png"]];
+    
+	switch(mysegment.selectedSegmentIndex) 
+	{
+		case 0:
+			gluemecontacttbl.hidden = FALSE;
+			phncontacttbl.hidden = TRUE;
+			//[AlertHandler showAlertForProcess];
+            
+            [mysegment setImage:[UIImage imageNamed:@"GMConSel.png"]forSegmentAtIndex:0];
+            [mysegment setImage:[UIImage imageNamed:@"Phone.png"]forSegmentAtIndex:1];
+            
+			[gluemecontacttbl reloadData];
+            
+       		
+			break;
+		case 1:
+            
+            
+			gluemecontacttbl.hidden=TRUE;
+			phncontacttbl.hidden=FALSE;
+			
+            [mysegment setImage:[UIImage imageNamed:@"GMCon.png"]forSegmentAtIndex:0];
+            [mysegment setImage:[UIImage imageNamed:@"PhoneSel.png"]forSegmentAtIndex:1];
+            
+			[phncontacttbl reloadData];
+			
+		
+			break;
+	}
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
+{
+    return 1;
+}
+
+
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
+{
+	if (tableView.tag == 1)
+	{
+		return 4;
+	}
+	if (tableView.tag == 2)
+	{
+		return [Contname count];
+	}
+	//return 0;
+}
+
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+    
+    static NSString *CellIdentifier = @"Cell";
+    
+//    UIImageView *tableSapImg = [[UIImageView alloc] initWithFrame:CGRectMake(5, 40, 290, 1)];
+//    [tableSapImg setImage:[UIImage imageNamed:@"saperator.png"]];
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        
+    }
+	//cell.selectionStyle = UITableViewCellEditingStyleNone;
+	if (tableView.tag == 1)
+	{
+		cell.textLabel.font = [UIFont fontWithName:@"arial" size:18];
+		//cell.textLabel.textColor=[UIColor whiteColor];
+		
+        cell.textLabel.text = [contactname objectAtIndex:indexPath.row];
+		//cell.detailTextLabel.text= @"-downtown";
+		//cell.detailTextLabel.textColor = [UIColor whiteColor];
+		//cell.contentView.backgroundColor=[UIColor clearColor];
+		cell.textLabel.backgroundColor=[UIColor clearColor];
+		cell.detailTextLabel.backgroundColor=[UIColor clearColor];
+        UIImageView *cellImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 280, 44)];
+        [cellImg setImage:[UIImage imageNamed:@"contactCellImg.png"]];
+        cell.backgroundView = cellImg;
+        gluemecontacttbl.frame=CGRectMake(20, 155, 280, 4*44);
+        cell.textLabel.textColor = [UIColor blackColor];
+        //[cell.contentView addSubview:tableSapImg];
+	}
+	
+	if (tableView.tag == 2)
+	{
+		cell.textLabel.font = [UIFont fontWithName:@"arial" size:18];
+		//cell.textLabel.textColor=[UIColor whiteColor];
+		cell.textLabel.text = [Contname objectAtIndex:indexPath.row];
+		//cell.detailTextLabel.text= @"-downtown";
+		//cell.detailTextLabel.textColor = [UIColor whiteColor];
+		//cell.contentView.backgroundColor=[UIColor clearColor];
+		cell.textLabel.backgroundColor=[UIColor clearColor];
+		cell.detailTextLabel.backgroundColor=[UIColor clearColor];
+        
+        UIImageView *cellImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 280, 44)];
+        [cellImg setImage:[UIImage imageNamed:@"contactCellImg.png"]];
+        cell.backgroundView = cellImg;
+        phncontacttbl.frame=CGRectMake(20, 155, 280, 5*44);
+        cell.textLabel.textColor = [UIColor blackColor];
+        
+        
+        
+      //  [cell.contentView addSubview:tableSapImg];
+        
+	}
+	
+
+	
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+    if (tableView.tag == 1) {
+        
+        appDelegateObj.isaddfrnd = YES;
+        
+        //[meetingPointObj getSelected:IsselectFrnd];
+        
+        //  IsselectFrnd = YES;
+        appDelegateObj.addedFrnd = [contactname objectAtIndex:indexPath.row];
+        appDelegateObj.stremailselect=[contactemail objectAtIndex:indexPath.row];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else
+    {
+        
+        //         IsselectFrnd = TRUE;
+        //        [meetingPointObj getSelected:IsselectFrnd];
+        appDelegateObj.isaddfrnd = YES;
+        appDelegateObj.addedFrnd = [Contname objectAtIndex:indexPath.row];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+- (void)didReceiveMemoryWarning {
+    // Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
+    
+    // Release any cached data, images, etc. that aren't in use.
+}
+
+- (void)viewDidUnload {
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
+
+
+- (void)dealloc {
+    [super dealloc];
+}
+
+
+@end

@@ -1,0 +1,30 @@
+//
+//  Themes.h
+//  glueme
+//
+//  Created by apple1 on 9/21/11.
+//  Copyright 2011 openxcek. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "WhoGlueViewController.h"
+#import "listwhoglued.h"
+#import "Bump.h"
+#import "gluemeAppDelegate.h"
+@class WhoGlueViewController,Bump,gluemeAppDelegate;
+@interface Themes : UIViewController {
+
+    gluemeAppDelegate *appDelegateObj;
+    Bump *bumpObj;
+    WhoGlueViewController *whoGlueVwObj;
+	NSMutableArray *arrThemes;
+	IBOutlet UIButton *btnFAQ;
+	IBOutlet UIButton *btnMap;
+    listwhoglued *listVwObj;
+	IBOutlet UITableView *tlbThemes;
+}
+-(IBAction)onFAQ:(id)sender;
+-(IBAction)onMap:(id)sender;
+-(IBAction)setmeeting;
+-(void)Bump;
+@end

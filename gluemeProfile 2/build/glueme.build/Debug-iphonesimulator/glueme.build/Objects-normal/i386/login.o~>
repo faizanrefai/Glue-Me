@@ -1,0 +1,4 @@
+/gluemeProfile 2/Classes/login.m:532: warning: property 'strDeviceID' requires method '-strDeviceID' to be defined - use @synthesize, @dynamic or provide a method implementation
+/gluemeProfile 2/Classes/login.m:532: warning: property 'strDeviceID' requires the method 'setStrDeviceID:' to be defined - use @synthesize, @dynamic or provide a method implementation
+/gluemeProfile 2/Classes/login.m:532: warning: incomplete implementation of class 'login'
+/gluemeProfile 2/Classes/login.m:532: warning: method definition for '-getReqCount' not found

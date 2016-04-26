@@ -1,0 +1,32 @@
+//
+//  Bump.h
+//  glueme
+//
+//  Created by apple1 on 9/21/11.
+//  Copyright 2011 openxcek. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "WhoGlueViewController.h"
+#import "listwhoglued.h"
+#import "gluemeAppDelegate.h"
+
+@class WhoGlueViewController,listwhoglued,gluemeAppDelegate;
+@interface Bump : UIViewController {
+	
+    gluemeAppDelegate *appDelegateObj;
+    listwhoglued *listVwObj;
+    WhoGlueViewController *whoGlueVwObj;
+	NSMutableArray *arrBump;
+	IBOutlet UITableView *tblBump;
+	NSIndexPath *ind;
+	IBOutlet UIButton *btnFAQ;
+	IBOutlet UIButton *btnMap;
+    
+}
+-(IBAction)onFAQ:(id)sender;
+-(IBAction)onMap:(id)sender;
+-(IBAction)setmeeting;
+-(void)Back;
+-(IBAction)BumpClicked;
+@end

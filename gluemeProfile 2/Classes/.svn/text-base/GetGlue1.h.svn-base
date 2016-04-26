@@ -1,0 +1,54 @@
+//
+//  GetGlue1.h
+//  glueme
+//
+//  Created by apple on 10/25/11.
+//  Copyright 2011 354456. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "JSONParser.h"
+#import "whogluedmap.h"
+#import "FAQHelp.h"
+#import "WhoGlueViewController.h"
+#import "listwhoglued.h"
+#import "GetGlueViewController.h"
+#import "gluemeAppDelegate.h"
+#import "Bump.h"
+
+@interface GetGlue1 : UIViewController<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate> {
+    NSMutableArray  *Contname;
+    
+    NSMutableArray *contactArray;
+    listwhoglued *listVwObj;
+    WhoGlueViewController *whoGlueObj;
+    GetGlueViewController *objglue;
+    gluemeAppDelegate *appDelegateObj;
+    NSMutableArray *contactname;
+    Bump *bumpObj;
+    IBOutlet UISegmentedControl *mysegment;
+    NSMutableArray *contactnum;
+    IBOutlet UITableView *gluemecontacttbl;
+    IBOutlet UITableView *phncontacttbl;
+    NSMutableArray *contactemail;
+    IBOutlet UISearchBar *searchbar;
+    //NSMutableArray *phoneArray2;
+    NSMutableArray *Name;
+    NSMutableArray *phoneArray2;
+    NSMutableArray *phnArray;
+    
+    NSMutableArray *lnamearray;
+    NSMutableArray *bdate;
+    
+    
+}
+//@property (nonatomic, retain)NSMutableArray *phnArray;
+@property (nonatomic, retain)NSMutableArray *phoneArray2;
+@property (nonatomic, retain)NSMutableArray *Name;
+//@property (nonatomic, retain)NSMutableArray *phoneArray2;
+@property (nonatomic, retain) UISearchBar *searchbar;
+@property (nonatomic, retain) UISegmentedControl *mysegment;
+
+-(IBAction)onMap:(id)sender;
+-(IBAction)setmeeting;
+@end

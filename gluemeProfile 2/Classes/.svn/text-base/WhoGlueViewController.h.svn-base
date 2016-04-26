@@ -1,0 +1,128 @@
+//
+//  WhoGlueViewController.h
+//  glueme
+//
+//  Created by OPENXCELL TECHNOLABS on 9/20/11.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "Place.h"
+#import "PlaceMark.h"
+#import <MapKit/MapKit.h>
+#import "listwhoglued.h"
+#import "ContactDetailView.h"
+#import "gluemeAppDelegate.h"
+#import "profileClass.h"
+#import <CoreLocation/CoreLocation.h>
+#import "listwhoglued.h"
+#import "iCodeBlogAnnotation.h"
+#import "iCodeBlogAnnotationView.h"
+#import "Bump.h"
+#import "JSON.h"
+#import "JSONParser.h"
+#import "SBJsonParser.h"
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMessageComposeViewController.h>
+#import "MapWithRoutesViewController.h"
+
+
+@class gluemeAppDelegate,ContactDetailView,profileClass,MKMapView,Place,PlaceMark,Bump;
+@interface WhoGlueViewController : UIViewController <CLLocationManagerDelegate, MFMessageComposeViewControllerDelegate,MFMailComposeViewControllerDelegate,MKMapViewDelegate,CLLocationManagerDelegate,UIWebViewDelegate,MKAnnotation>{
+    profileClass *profileclassObj;
+    gluemeAppDelegate *appDelegateObj;
+    Place *home;
+    PlaceMark* from;
+    MKMapView *ImgMapViewHome;
+    MKMapView *ImgMapView;
+    MKMapView *ImgMapViewHome3;
+    MKPinAnnotationView *annView;
+    listwhoglued *listVwObj;
+    NSMutableDictionary *dic;
+    NSMutableArray *contactnum;
+    NSMutableArray *contactemail;
+    //IBOutlet UITableView *tableview;
+	//IBOutlet MKMapView *mapView;
+	//IBOutlet UIImageView *shadowImage;
+    NSMutableArray *arrlist;
+    
+    NSMutableArray *latArray;
+    NSMutableArray *longArray;
+    NSMutableArray *ImgArray;
+    NSMutableArray *nameArray;
+    NSMutableArray *bdateArray;
+    NSMutableArray *annTypeArray;
+    NSMutableArray *Lnamearray;
+    
+    IBOutlet UILabel *LblName;
+//    IBOutlet UILabel *LblEmail;
+//    IBOutlet UILabel *LblPhone;
+    NSInteger *temp;
+    
+    CLLocation *currentLocation;
+	IBOutlet MKMapView *mapView;
+	NSMutableArray *mapAnnotations;
+	IBOutlet UIView *userProfileVw;
+	IBOutlet UIButton *btnwhoglued;
+    IBOutlet UIButton *btnFAQ;
+   
+	NSUserDefaults *prefs;
+    int cnt;
+    UIButton *profImgBtn;
+    Bump *bumpObj;
+	
+	
+	CLLocationManager *locationManager;
+   
+}
+
+@property (nonatomic, retain)NSMutableArray *annTypeArray;
+@property (nonatomic, retain)NSMutableArray *bdateArray;
+@property (nonatomic, retain)NSMutableArray *nameArray;
+@property (nonatomic, retain)UILabel *LblName;
+//@property (nonatomic, retain)UILabel *LblEmail;
+//@property (nonatomic, retain) UILabel *LblPhone;
+
+@property (nonatomic, retain) NSMutableArray *contactemail;
+@property (nonatomic, retain)NSMutableArray *contactnum;
+@property (nonatomic, retain) NSMutableDictionary *dic;
+//@property (nonatomic, retain) IBOutlet UITableView *tableview;
+@property (nonatomic, retain) IBOutlet MKMapView *mapView;
+//@property (nonatomic, retain) IBOutlet UIImageView *shadowImage;
+
+@property (nonatomic, retain)NSMutableArray *ImgArray;
+@property (nonatomic, retain)UIButton *profImgBtn;
+@property (nonatomic)int cnt;
+@property (nonatomic, retain)NSMutableArray *latArray;
+@property (nonatomic, retain) NSMutableArray *longArray;
+@property(nonatomic, retain)UIView *userProfileVw;
+//@property (nonatomic, retain)MKMapView *mapView;
+@property (nonatomic, retain) NSMutableArray *mapAnnotations;
+@property (nonatomic, retain) MKMapView *ImgMapViewHome;
+@property (nonatomic, retain)MKMapView *ImgMapView;
+@property (nonatomic, retain)MKMapView *ImgMapViewHome3;
+@property (nonatomic, retain)MKPinAnnotationView *annView;
+
++ (CGFloat)annotationPadding;
++ (CGFloat)calloutHeight;
+
+-(void)displayMyMap;
+-(IBAction)btnwhoglued_clicked;
+-(IBAction)onFAQ:(id)sender;
+-(void)btnViewMapclicked:(id)sender;
+-(IBAction)ClickNext;
+-(void)ButtonPressed:(id)sender;
+-(void)showView:(int)sender;
+-(IBAction)setmeeting;
+-(void)setMapViewPoint;
+-(void)loadOurAnnotations;
+-(void)PassData;
+
+-(IBAction)call:(id)sender;
+-(IBAction)email:(id)sender;
+-(IBAction)direction:(id)sender;
+-(IBAction)message:(id)sender;
+
+
+
+@end

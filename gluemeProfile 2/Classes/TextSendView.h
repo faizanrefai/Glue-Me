@@ -1,0 +1,36 @@
+//
+//  TextSendView.h
+//  glueme
+//
+//  Created by OPENXCELL TECHNOLABS on 9/21/11.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "listwhoglued.h"
+#import "gluemeAppDelegate.h"
+#import "CustomCalloutMapViewViewController.h"
+#import "meetingpointview.h"
+
+@class listwhoglued,gluemeAppDelegate;
+@interface TextSendView : UIViewController<UIAlertViewDelegate,UITextFieldDelegate,UITextViewDelegate> {
+
+    gluemeAppDelegate *appDelegateObj;
+    listwhoglued *listVwObj;
+	IBOutlet UIButton *btnMap;
+	IBOutlet UIButton *btnFAQ;
+    IBOutlet UITextView *textSend;
+    UITextField *ToText;
+    CGFloat animatedDistance;
+    
+}
+
+
+@property (nonatomic, retain)UITextView *textSend;
+@property (nonatomic, retain)UITextField *ToText;
+
+-(IBAction)onSend:(id)sender;
+-(IBAction)onCancel:(id)Sender;
+-(IBAction)onMap:(id)sender;
+-(IBAction)setmeeting;
+@end

@@ -1,0 +1,368 @@
+//
+//  gluemeAppDelegate.m
+//  glueme
+//
+//  Created by apple on 9/19/11.
+//  Copyright 2011 fgbfg. All rights reserved.
+//
+
+#import "gluemeAppDelegate.h"
+#import "RootViewController.h"
+#import "whogluedmap.h"
+
+@implementation gluemeAppDelegate
+
+@synthesize islogin,isregister,isdeleteHistory,isReGlued,phoneBkDict,EmailDict,latitude,longitude,PhoneBookArray,emails,userID,placeString,selectedFrnd,addedFrnd,isaddfrnd;
+@synthesize window;
+@synthesize navigationController,strid,selectpage,contactnum,contactname,contactemail,emailStr,phnStr,NameStr,bdateStr,myobject,mySelector,stremailselect,stremailselect0;
+@synthesize mylatitude,mylongitude,count;
+
+
+@synthesize strtolatuser,strtolonguser,strfromlatuser,strfromlonguser,lname;
+
+
+#pragma mark -
+#pragma mark Application lifecycle
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
+    
+    // Override point for customization after application launch.
+    
+    // Add the navigation controller's view to the window and display.
+    [self.window addSubview:navigationController.view];
+    [self.window makeKeyAndVisible];
+     islogin = TRUE;
+    return YES;
+}
+
+
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+    NSLog(@"notification received");
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Booking Confirmed" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+}
+
+/*
+-(void)getContacts
+{
+    
+    ABAddressBookRef addressBook = ABAddressBookCreate(); NSArray *thePeople = (NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBook);
+    for (id person in thePeople)
+        
+    {
+        NSString *name = (NSString *)ABRecordCopyValue(person, kABPersonFirstNameProperty);
+        
+        NSLog(@"!!!!!! name ---> %@",name);
+    }
+    
+    
+    /*
+     
+     -(NSMutableArray*)getAllContacts{
+     
+     
+     char lastNameString, firstNameString;
+     NSMutableArray arrname =[[NSMutableArray alloc] init];
+     NSMutableArray arrTemp = [[NSMutableArray alloc] init];
+     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+     // AddressBook
+   
+    ABAddressBookRef ab = ABAddressBookCreate();
+    CFArrayRef allPeople = ABAddressBookCopyArrayOfAllPeople(ab);
+    CFIndex nPeople = ABAddressBookGetPersonCount(ab);
+    
+    for(int i = 0; i < nPeople; i++)
+    { [dict removeAllObjects];
+     ABRecordRef ref = CFArrayGetValueAtIndex(allPeople, i);
+     
+     CFStringRef firstName = ABRecordCopyValue(ref, kABPersonFirstNameProperty);
+     CFStringRef lastName = ABRecordCopyValue(ref, kABPersonLastNameProperty);
+     CFDataRef imgData;
+     if(ABPersonHasImageData(ref)){
+     imgData = ABPersonCopyImageData(ref);
+     }else {
+     imgData=nil;
+     }
+     
+     
+     static char fallback = "";
+     int fbLength = strlen(fallback);
+     
+     int firstNameLength = fbLength;
+     bool firstNameFallback = true;
+     int lastNameLength = fbLength;
+     bool lastNameFallback = true;
+     
+     if (firstName != NULL)
+     {
+        firstNameLength = (int) CFStringGetLength(firstName);
+        firstNameFallback = false;
+     }
+        if (lastName != NULL)
+        {
+            lastNameLength = (int) CFStringGetLength(lastName);
+            lastNameFallback = false;
+        }
+     
+     if (firstNameLength == 0)
+     {
+        firstNameLength = fbLength;
+        firstNameFallback = true;
+     }
+     if (lastNameLength == 0)
+     {
+        lastNameLength = fbLength;
+        lastNameFallback = true;
+     }
+     
+     firstNameString = malloc(sizeof(char)*(firstNameLength+1));
+     lastNameString = malloc(sizeof(char)*(lastNameLength+1));
+     
+     if (firstNameFallback == true)
+     {
+        strcpy(firstNameString, fallback);
+     }
+     else
+     {
+        CFStringGetCString(firstName, firstNameString, 10*CFStringGetLength(firstName), kCFStringEncodingASCII);
+     }
+     
+     if (lastNameFallback == true)
+     {
+        strcpy(lastNameString, fallback);
+     }
+     else
+     {
+        CFStringGetCString(lastName, lastNameString, 10*CFStringGetLength(lastName), kCFStringEncodingASCII);
+     }
+     
+     printf("%d.\t%s %s\n", i, firstNameString, lastNameString);
+     NSString *fname= [NSString stringWithFormat:@"%s",firstNameString];
+     NSString *lname= [NSString stringWithFormat:@"%s",lastNameString];
+     NSData *myData;
+     if (imgData) {
+        myData=(NSData *)imgData;
+     }else {
+        myData=nil;
+     }
+     
+     //fetch Phone num
+     ABMultiValueRef phoneNumberProperty = ABRecordCopyValue(ref, kABPersonPhoneProperty);
+     NSArray* phoneNumbers = (NSArray*)ABMultiValueCopyArrayOfAllValues(phoneNumberProperty);
+     CFRelease(phoneNumberProperty);
+     
+     // Do whatever you want with the phone numbers
+     //NSLog(@"Phone numbers = %@", phoneNumbers);
+     NSString *PhoneNum = [phoneNumbers objectAtIndex:0];
+     
+     
+     //--------------remove special char form string(Phone number)-----------------        
+     NSString *originalString = PhoneNum;
+     
+     //NSLog(@"%@", originalString);
+     NSMutableString *strippedString = [NSMutableString 
+     stringWithCapacity:originalString.length];
+     
+     NSScanner *scanner = [NSScanner scannerWithString:originalString];
+     NSCharacterSet *numbers = [NSCharacterSet 
+     characterSetWithCharactersInString:@"0123456789"];
+     
+     while ([scanner isAtEnd] == NO) {
+     NSString *buffer;
+     if ([scanner scanCharactersFromSet:numbers intoString:&buffer]) {
+     [strippedString appendString:buffer];
+     
+     } 
+     else 
+     {
+        [scanner setScanLocation:([scanner scanLocation] + 1)];
+     }
+    }
+     
+     if([fname isEqualToString:@""] && [lname isEqualToString:@""]){
+     
+     }else{
+     
+     if (myData) {
+     UIImage *img = [UIImage imageWithData:myData];
+     
+     [dict setObject:img forKey:@"imgData"];            
+     }
+     
+     [dict setValue:fname forKey:@"fname"];
+     [dict setValue:lname forKey:@"lname"];
+     [dict setValue:strippedString forKey:@"phoneNumber"];
+     [arrname addObject:[dict copy]];
+     }
+     
+     if (firstName != NULL)
+     {
+     CFRelease(firstName);
+     }
+     if (imgData != NULL)
+     {
+        CFRelease(imgData);
+     }
+     if (lastName != NULL)
+     {
+        CFRelease(lastName);
+     }
+     free(firstNameString);
+     free(lastNameString);
+     
+     }
+     
+     
+     for (int i=0; i<[arrname count]; i++) 
+     {
+     NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+     [dict setValue:@"0" forKey:@"sel"];
+     [arrTemp addObject:dict];
+     }
+     
+     return arrname;
+    }
+     
+     */
+    /*
+     PhoneBookArray = [[NSMutableArray alloc] init];
+    phoneBkDict = [[NSMutableDictionary alloc] init];
+   EmailDict = [[NSMutableDictionary alloc] init];
+    
+    ABAddressBookRef addressbook = ABAddressBookCreate();
+    
+    CFArrayRef allPeople = ABAddressBookCopyArrayOfAllPeople(addressbook);
+    NSLog(@"%@",allPeople);
+    CFIndex numPeople = ABAddressBookGetPersonCount(addressbook);
+    //  NSLog(@"%@",numPeople);
+    for (int i=0; i < numPeople; i++) { 
+        ABRecordRef person = CFArrayGetValueAtIndex(allPeople, i);
+        ABMutableMultiValueRef phonelist = ABRecordCopyValue(person, kABPersonPhoneProperty);
+        
+        CFIndex numPhones = ABMultiValueGetCount(phonelist);
+        NSMutableArray *phoneNo;
+        phoneNo = [[NSMutableArray alloc] init];
+        for (int j=0; j < numPhones; j++) {
+            CFTypeRef ABphone = ABMultiValueCopyValueAtIndex(phonelist, j);
+            NSString *personPhone = (NSString *)ABphone;
+            NSLog(@"%@",personPhone);
+            CFRelease(ABphone);
+            [phoneNo addObject:personPhone];
+            NSLog(@"%@",phoneNo);
+            [phoneBkDict setObject:phoneNo forKey:(NSString*)ABRecordCopyCompositeName(person)];
+        }
+        
+        emails = [[NSMutableDictionary alloc] init];
+        
+        ABMutableMultiValueRef emailMulti = ABRecordCopyValue(person, kABPersonEmailProperty);
+        emails = [[NSMutableArray alloc] init];
+        
+        CFIndex numEmail = ABMultiValueGetCount(emailMulti);
+        
+        for (int k = 0; k<numEmail; k++) {
+            NSString *anEmail = [(NSString*)ABMultiValueCopyValueAtIndex(emailMulti, k) autorelease];
+            NSLog(@"%@",anEmail);
+            [emails addObject:anEmail];
+            NSLog(@"%@",emails);
+            [EmailDict setObject:emails forKey:(NSString*)ABRecordCopyCompositeName(person)];
+        }
+        // NSLog(@"%@",emails);
+        //         for(int k=0;k<[emails count];k++){
+        //         NSLog(@"email at index %d is %@",k,[emails objectAtIndex:k]);
+        //         }
+        // [dict setObject:emails forKey:@"Email"];
+        //  NSLog(@"Dictionary Contains%@",dict);
+        
+        
+        CFRelease(emailMulti);
+        [emails release];
+        [phoneNo release];
+        CFRelease(phonelist);
+        
+        //        CFDataRef imageData = ABPersonCopyImageData(person);
+        //        UIImage *image = [UIImage imageWithData:(NSData *)imageData];
+        //        CFRelease(imageData);
+        
+        [PhoneBookArray addObject:(NSString*)ABRecordCopyCompositeName(person)];
+    }
+    NSLog(@"%@",phoneBkDict);
+    NSLog(@"%@",PhoneBookArray);
+    CFRelease(allPeople);
+    CFRelease(addressbook);
+
+}
+
+
+
+-(void)applicationDidBecomeActive:(UIApplication *)application
+{
+    [self getContacts];
+    [myobject performSelector:mySelector];
+    //[self performSelectorOnMainThread:@selector(getphonenumber) withObject:nil waitUntilDone:YES];
+    
+}
+
+- (void)applicationWillResignActive:(UIApplication *)application {
+    /*
+     Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
+     Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    
+}
+*/
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    /*
+     Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+     If your application supports background execution, called instead of applicationWillTerminate: when the user quits.
+     */
+}
+
+
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+    /*
+     Called as part of  transition from the background to the inactive state: here you can undo many of the changes made on entering the background.
+     */
+}
+
+
+//- (void)applicationDidBecomeActive:(UIApplication *)application {
+//    /*
+//     Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+//     */
+//}
+
+
+- (void)applicationWillTerminate:(UIApplication *)application {
+    /*
+     Called when the application is about to terminate.
+     See also applicationDidEnterBackground:.
+     */
+}
+
+
+
+
+#pragma mark -
+#pragma mark Memory management
+
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
+    /*
+     Free up as much memory as possible by purging cached data objects that can be recreated (or reloaded from disk) later.
+     */
+}
+
+
+- (void)dealloc {
+    [latitude release];
+    [longitude release];
+    [EmailDict release];
+    [phoneBkDict release];
+	[navigationController release];
+	[window release];
+	[super dealloc];
+}
+
+
+@end
+

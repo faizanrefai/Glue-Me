@@ -1,0 +1,47 @@
+//
+//  meetingpointview.h
+//  glueme
+//
+//  Created by apple on 9/21/11.
+//  Copyright 2011 fgbfg. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "meetingpointdetail.h"
+#import "WhoGlueViewController.h"
+#import "listwhoglued.h"
+#import "Bump.h"
+#import "JSONParser.h"
+#import "gluemeAppDelegate.h"
+#import "AlertHandler.h"
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
+@class WhoGlueViewController,listwhoglued,Bump,gluemeAppDelegate;
+@interface meetingpointview : UIViewController <CLLocationManagerDelegate
+,UISearchBarDelegate , UITableViewDelegate , UITableViewDataSource> {
+    Bump *bumpObj;
+    gluemeAppDelegate *appDelegateObj;
+    listwhoglued *listVwObj;
+	IBOutlet UITableView *tbl;
+	IBOutlet UIButton *btnFAQ;
+	IBOutlet UISearchBar *searchbar;
+	WhoGlueViewController *whoGlueVwObj;
+	NSMutableArray *tabelarr;
+	NSMutableArray *DetailArray;
+
+    CLLocation *currentLocation;
+	
+    CLLocationManager *locationManager;
+    
+
+    NSMutableArray *resultArray;
+	NSMutableArray *searcharr;
+	IBOutlet UIButton *btnMap;
+}
+-(IBAction)onMap:(id)sender;
+-(void)Back;
+-(IBAction)setmeeting;
+-(void)Bump;
+-(void)datafatch:(NSDictionary*)dictionary;
+
+@end

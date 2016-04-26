@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/glueme/!svn/ver/324/glueme/wsclasses
+END
+TBXML.m
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/glueme/!svn/ver/324/glueme/wsclasses/TBXML.m
+END
+GdataParser.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/glueme/!svn/ver/324/glueme/wsclasses/GdataParser.h
+END
+webService.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/glueme/!svn/ver/324/glueme/wsclasses/webService.h
+END
+TestWebService_Prefix.pch
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/glueme/!svn/ver/324/glueme/wsclasses/TestWebService_Prefix.pch
+END
+WSPContinuous.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/glueme/!svn/ver/324/glueme/wsclasses/WSPContinuous.h
+END
+GdataParser.m
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/glueme/!svn/ver/324/glueme/wsclasses/GdataParser.m
+END
+webService.m
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/glueme/!svn/ver/324/glueme/wsclasses/webService.m
+END
+TBxmlParser.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/glueme/!svn/ver/324/glueme/wsclasses/TBxmlParser.h
+END
+WSPContinuous.m
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/glueme/!svn/ver/324/glueme/wsclasses/WSPContinuous.m
+END
+GDataXMLNode.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/glueme/!svn/ver/324/glueme/wsclasses/GDataXMLNode.h
+END
+TBxmlParser.m
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/glueme/!svn/ver/324/glueme/wsclasses/TBxmlParser.m
+END
+NSDataAdditions.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/glueme/!svn/ver/324/glueme/wsclasses/NSDataAdditions.h
+END
+GDataXMLNode.m
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/glueme/!svn/ver/324/glueme/wsclasses/GDataXMLNode.m
+END
+NSDataAdditions.m
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/glueme/!svn/ver/324/glueme/wsclasses/NSDataAdditions.m
+END
+TBXML.h
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/glueme/!svn/ver/324/glueme/wsclasses/TBXML.h
+END
